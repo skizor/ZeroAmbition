@@ -12,7 +12,7 @@
 
 <p>
   <strong>Image:</strong>
-  <%= @product.image %>
+  <%= image_tag @product.image:thumbnail %>
 </p>
 
 <p>
@@ -30,10 +30,8 @@
   <%= @product.available %>
 </p>
 
-<p>
-  <strong>:</strong>
-  <%= @product. %>
-</p>
+<h3> Products under this category </h3>
+
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

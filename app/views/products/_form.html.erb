@@ -23,17 +23,12 @@
 
   <div class="field">
     <%= f.label :image %>
-    <%= f.text_field :image %>
+    <%= f.file_field :image %>
   </div>
 
   <div class="field">
     <%= f.label :price %>
-    <%= f.text_field :price %>
-  </div>
-
-  <div class="field">
-    <%= f.label :category_id %>
-    <%= f.text_field :category_id %>
+    <%= f.number_field :price %>
   </div>
 
   <div class="field">
@@ -41,10 +36,9 @@
     <%= f.check_box :available %>
   </div>
 
-  <div class="field">
-    <%= f.label : %>
-    <%= f.text_field : %>
-  </div>
+  <%= select_tag(:category_id, options_for_select(@categories)) %>
+
+
 
   <div class="actions">
     <%= f.submit %>

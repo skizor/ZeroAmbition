@@ -4,9 +4,9 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :title
       t.text :description
       t.attachment :image
-      t.string :price
-      t.string :category_id
-      t.boolean :available
+      t.integer :price
+      t.integer :category_id
+      t.boolean :available, default: true
       t.integer :discount
 
       t.timestamps
