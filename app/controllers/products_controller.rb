@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
+    @user = User.find_by(params[:id])
   end
 
   # GET /products/1

@@ -3,16 +3,19 @@
   <head>
     <title>ZeroAmbition</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= render '/components/nav.html.erb' %>
+    <div class="containter">
+        <%= render '/components/nav.html.erb' %>
+    </div>
+      <%= yield %>
+
     <span class="notice"><%= notice %></span>
     <span class="alert"><%= alert %></span>
-    <%= yield %>
+
     <%= render '/components/footer.html.erb' %>
   </body>
 </html>
