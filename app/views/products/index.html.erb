@@ -1,15 +1,4 @@
 <div class="container-fluid" style="margin-top:-20px;">
-        <div class="row bg">
-          <div class="col-sm-4 col-sm-offset-2">
-            <%= image_tag('ruby.png', class: 'first-image')%>
-          </div>
-          <div class="col-sm-4">
-            stuff
-          </div>
-          <div class="col-sm-2">
-            stuff
-          </div>
-        </div>
         <div class="row">
 
             <div class="col-md-3">
@@ -31,60 +20,11 @@
             </div>
 
             <div class="col-md-9">
-                <div class="row">
-
-                  <% @products.each do |product| %>
-                  <div class="col-sm-4 col-lg-4 col-md-4">
-                      <div class="panel panel-default">
-                          <div class="panel-image hide-panel-body">
-                          <%= image_tag(product.image, class: 'panel-image-preview') %>
-                        </div>
-                          <div class="caption">
-                              <h4 class="pull-right"><%= product.price %></h4>
-                              <h4><a href="/products/<%= product.id %>"><%= product.title %> </a>
-                              </h4>
-                          </div>
-                          <div class="ratings">
-                              <p class="pull-right">15 reviews</p>
-                              <p>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                                  <span class="glyphicon glyphicon-star"></span>
-                              </p>
-                              <p>  <% if user_signed_in? %>
-                                  <% if current_user.id == 1%>
-                                  <%= link_to 'Show', product %>
-                                  <%= link_to 'Edit', edit_product_path(product) %>
-                                  <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
-                                  <% end %>
-                                  <% end %></p>
-                          </div>
-                          <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="#myModal<%= product.id %>">Показать всплывающее окно</button>
-                            <div id="myModal<%= product.id %>" class="modal fade">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
-                                    <h4 class="modal-title"><%= product.title %></h4>
-                                  </div>
-                                  <div class="modal-body"> <%= product.title %>
-
-                                  </div>
-                                  <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>
-                                </div>
-                              </div>
-                            </div>
-                          <% if user_signed_in? %>
-                          <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
-                          <% end %>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
             </div>
+
         </div>
     </div>
+
 
     <header>
       <ul>
@@ -94,24 +34,38 @@
       </ul>
     </header>
     <div class="container">
-    <div class='row'>
-    <% @products.each do |product| %>
-    <div class="col-sm-3">
-    <div class='<%= cycle('product--red', 'product--yellow')%>'>
-      <div class='product_inner'>
-        <%= image_tag(product.image, width: '300') %>
-        <p><%= product.title %></p>
-        <p></p>
-        <p>Price £<%= product.price %></p>
-        <button>Add to basket</button>
-      </div>
-      <div class='product_overlay'>
-        <h2>Added to basket</h2>
-        <i class='fa fa-check'></i>
-      </div>
-    </div>
+      <div class='row'>
+        <% @products.each do |product| %>
+        <div class="col-sm-3">
+          <div class='<%= cycle('product--red', 'product--yellow')%>'>
+            <div class='product_inner'>
+              <%= image_tag(product.image, width: '150') %>
+              <h4 style="color: black"><%= product.title %></h4>
+              <p>Price £<%= product.price %></p>
+              <button class="btn" type="button" data-toggle="modal" data-target="#myModal<%= product.id %>">Подробнее</button>
+                <div id="myModal<%= product.id %>" class="modal fade">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+                        <h4 class="modal-title"><%= product.title %></h4>
+                      </div>
+                      <div class="modal-body"> <%= product.title %>
+
+                      </div>
+                      <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>
+                    </div>
+                  </div>
+                </div>
+                <% if user_signed_in? %>
+                <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
+                <% end %>
+            </div>
+            <div class='product_overlay'>
+              <h2>Added to basket</h2>
+              <i class='fa fa-check'></i>
+            </div>
+          </div>
       </div>
     <% end %>
-
-</div>
-</div>
+      </div>
+    </div>

@@ -104,10 +104,7 @@
   margin-right: 30px;
 }
 
-.bg {
-  background-color: #BEFFE1;
-  border:  none;
-}
+
 // PANEL END
 
 //first div
@@ -143,26 +140,7 @@ $pink-card: #FF386D;
 }
 
 html,body {
-  background: $bg-color;
-}
-
-header {
-  width: 95%;
-  display: flex;
-  justify-content: flex-end;
-  flex-flow: row wrap;
-  ul {
-    padding: 1.2em 0 0.5em;
-  }
-  span {
-    padding: 0 0 0 0.5em;
-  }
-  span, i {
-    color: #2B2D42;
-  }
-  i:nth-of-type(2) {
-    cursor: pointer;
-  }
+  background: url(bg.jpg)
 }
 .product {
   box-shadow: 1px 5px 15px #CCC;
@@ -174,21 +152,10 @@ header {
   overflow: hidden;
   position: relative;
   flex: auto;
-  &--blue {
-    @extend .product;
-    @include diagBg($blue-card);
-  }
-  &--orange {
-    @extend .product;
-    @include diagBg($orange-card);
-  }
+
   &--red {
     @extend .product;
     @include diagBg($red-card);
-  }
-  &--green {
-    @extend .product;
-    @include diagBg($green-card);
   }
   &--yellow {
     @extend .product;
@@ -200,7 +167,7 @@ header {
   }
   img {
     max-width: 100%;
-    height: auto !important;
+    height: 200px !important;
     text-align: center;
   }
   &_inner {
