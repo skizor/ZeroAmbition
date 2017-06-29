@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @categories = Category.all
+    admin
   end
 
   # GET /categories/1
@@ -15,15 +16,18 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
+    admin
   end
 
   # GET /categories/1/edit
   def edit
+    admin
   end
 
   # POST /categories
   # POST /categories.json
   def create
+    admin
     @category = Category.new(category_params)
 
     respond_to do |format|
@@ -40,6 +44,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
+    admin
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to @category, notice: 'Category was successfully updated.' }
@@ -54,6 +59,7 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
+    admin
     @category.destroy
     respond_to do |format|
       format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
@@ -70,5 +76,11 @@ class CategoriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
       params.require(:category).permit(:title, :desc, :available)
+    end
+
+    def admin
+      if current_user.id != 1
+        redirect_to products_path
+      end
     end
 end

@@ -5,6 +5,7 @@ class CartsController < ApplicationController
   # GET /carts.json
   def index
     @carts = Cart.all
+    admin
   end
 
   # GET /carts/1
@@ -15,10 +16,12 @@ class CartsController < ApplicationController
   # GET /carts/new
   def new
     @cart = Cart.new
+
   end
 
   # GET /carts/1/edit
   def edit
+
   end
 
   # POST /carts
@@ -54,12 +57,14 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
-    @cart.destroy
+    @cart.destroy if @cart.id == session[:cart_id]
+    session[:cart_id] = nil
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
-      format.json { head :no_content }
+    format.html { redirect_to root_url, notice: 'Теперь ваша корзина пуста!' }
+    format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -70,5 +75,11 @@ class CartsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
       params.fetch(:cart, {})
+    end
+
+    def admin
+      if current_user.id != 1
+        redirect_to products_path
+      end
     end
 end

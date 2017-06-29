@@ -1,71 +1,119 @@
-<div class="container-fluid" style="margin-top:-20px;">
-        <div class="row">
-
-            <div class="col-md-3">
-                <% if user_signed_in? %>
-                hello
-
-                <% else %>
-                <%= form_for(:user, :url => session_path(:user)) do |f| %>
-                <%= f.text_field :email %>
-                <%= f.password_field :password %><br>
-                <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %><br>
-                <%= f.submit 'Sign in' %>
-                <p>
-                <%= link_to "Forgot your password?", new_password_path(:user) %>
-              </p>
-                <% end %>
-                <% end %>
-            </div>
-
-            <div class="col-md-9">
-            </div>
-
-        </div>
+<div class="container">
+        <% if user_signed_in? %>
+        <% else %>
+        <%= form_for(:user, :url => session_path(:user)) do |f| %>
+        <%= f.text_field :email, placeholder:'email' %>
+        <%= f.password_field :password, placeholder:'password' %><br>
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %><br>
+        <%= f.submit 'Sign in' %>
+        <p>
+        <%= link_to "Forgot your password?", new_password_path(:user) %>
+      </p>
+      <br>
+        <% end %>
+        <% end %>
     </div>
+</div>
+<div class="">
+  <header class="bg-image" style="margin-top: -20px;">
+  <div class="container">
+    <h1>КЕРАМБИТ ГРАДИЕНТ</h1>
+    <h2>ТОЛЬКО У НАС, ЗА НИЗКУЮ ЦЕНУ</h2>
+    <a href="#" class="btn btn-transparent">Order yours now!</a>
+  </div>
+</header>
 
-
-    <header>
-      <ul>
-        <i class='fa fa-shopping-cart'>
-          <span class='counter'></span>
-        </i>
-      </ul>
-    </header>
-    <div class="container">
-      <div class='row'>
-        <% @products.each do |product| %>
-        <div class="col-sm-3">
-          <div class='<%= cycle('product--red', 'product--yellow')%>'>
-            <div class='product_inner'>
-              <%= image_tag(product.image, width: '150') %>
-              <h4 style="color: black"><%= product.title %></h4>
-              <p>Price £<%= product.price %></p>
-              <button class="btn" type="button" data-toggle="modal" data-target="#myModal<%= product.id %>">Подробнее</button>
-                <div id="myModal<%= product.id %>" class="modal fade">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
-                        <h4 class="modal-title"><%= product.title %></h4>
-                      </div>
-                      <div class="modal-body"> <%= product.title %>
-
-                      </div>
-                      <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>
+<section class="section--primary">
+  <div class="container">
+    <div class='row'>
+      <% @products.each do |product| %>
+      <div class="col-sm-3" style="margin-right: 70px">
+        <div class='<%= cycle('product--red', 'product--yellow')%>'>
+          <div class='product_inner'>
+            <%= image_tag(product.image, width: '150') %>
+            <h4 style="color: black"><%= product.title %></h4>
+            <p>Price £<%= product.price %></p>
+            <button class="addToCard" type="button" data-toggle="modal" data-target="#myModal<%= product.id %>">Подробнее</button>
+              <div id="myModal<%= product.id %>" class="modal fade">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+                      <h4 class="modal-title"><%= product.title %></h4>
                     </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <%= image_tag(product.image, width: '180') %>
+                        </div>
+                        <div class="col-sm-4">
+                          <div style="width: 100px; height:200px; color: black; display: block"><%= product.description %></div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="col-sm-12">
+                          Price: <%= product.price %><br>
+                        </div>
+                        <div class="col-sm-12" style="margin-top: 80%; text-align: right;">
+                          <br>
+                          <% if user_signed_in? %>
+                          <%= button_to 'Add to Cart', line_items_path(product_id: product), class: 'btn btn-primary btn-group-lg' %>
+                          <% end %>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>
                   </div>
                 </div>
-                <% if user_signed_in? %>
-                <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
-                <% end %>
-            </div>
-            <div class='product_overlay'>
-              <h2>Added to basket</h2>
-              <i class='fa fa-check'></i>
-            </div>
+              </div>
+              <% if user_signed_in? %>
+              <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
+              <% if current_user.id == 1%>
+              <%= link_to 'Show', product %>
+              <%= link_to 'Edit', edit_product_path(product) %>
+              <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+              <% end %>
+
           </div>
-      </div>
-    <% end %>
-      </div>
+          <div class='product_overlay'>
+            <h2>Added to basket</h2>
+            <i class='fa fa-check'></i>
+          </div>
+        </div>
     </div>
+  <% end %>
+    </div>
+  </div>
+</section>
+
+
+<section class="">
+  <div class="container">
+    <div class="col-3 text--center">
+      <img src="https://placehold.it/500x500" alt="" class="details-img--ball"/>
+    </div>
+    <div class="col-7 details">
+      <h3>Product is so awesome.</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere temporibus omnis illum, officia. Architecto voluptatibus commodi voluptatem perspiciatis eos possimus, eius at molestias quaerat magnam? Odio qui quos ipsam natus.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section--primary--light">
+  <div class="container">
+    <blockquote class="testimonial">
+      <p>Настоящей победа бывает только тогда, когда сами враги признают себя побежденными.</p>
+      <cite>
+        Клавдий Клавдиан
+      </cite>
+    </blockquote>
+  </div>
+</section>
+
+
+
+
+
+</div>
