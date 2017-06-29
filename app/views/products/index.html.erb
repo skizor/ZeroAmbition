@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top:-20px;">
+<!-- <div class="container-fluid" style="margin-top:-20px;">
         <div class="row">
 
             <div class="col-md-3">
@@ -23,7 +23,7 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
 
 
     <header>
@@ -39,7 +39,7 @@
         <div class="col-sm-3">
           <div class='<%= cycle('product--red', 'product--yellow')%>'>
             <div class='product_inner'>
-              <%= image_tag(product.image, width: '150') %>
+              <%= image_tag(product.image, width: '150',) %>
               <h4 style="color: black"><%= product.title %></h4>
               <p>Price £<%= product.price %></p>
               <button class="btn" type="button" data-toggle="modal" data-target="#myModal<%= product.id %>">Подробнее</button>
