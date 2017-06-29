@@ -126,7 +126,12 @@ $pink-card: #FF386D;
 }
 
 html,body {
+<<<<<<< HEAD
    background: #EDF2F4;
+=======
+  // background: url(bg.jpg)
+  background: grey;
+>>>>>>> 3a3ac19f356de722ac25621dbcab96cb93077596
 }
 .product {
   box-shadow: 1px 5px 15px #CCC;
@@ -155,6 +160,7 @@ html,body {
     max-width: 100%;
     height: 200px !important;
     text-align: center;
+    border-radius: 5px;
   }
   &_inner {
     display: flex;
@@ -214,6 +220,7 @@ html,body {
     }
   }
 }
+<<<<<<< HEAD
 //product styles end
 
 //Cart end
@@ -575,3 +582,27 @@ footer{
 }
 
 //end of design
+=======
+
+
+.sign-up {
+  text-align: center;
+
+  input {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.log-in {
+  text-align: center;
+}
+
+.edit-user {
+  text-align: center;
+  input {
+    display: block;
+    margin: 0 auto;
+  }
+}
+>>>>>>> 3a3ac19f356de722ac25621dbcab96cb93077596

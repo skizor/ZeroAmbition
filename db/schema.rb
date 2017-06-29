@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170628100421) do
+=======
+ActiveRecord::Schema.define(version: 20170629065401) do
+>>>>>>> 3a3ac19f356de722ac25621dbcab96cb93077596
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -45,6 +49,13 @@ ActiveRecord::Schema.define(version: 20170628100421) do
     t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "status_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -63,10 +74,6 @@ ActiveRecord::Schema.define(version: 20170628100421) do
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -82,6 +89,7 @@ ActiveRecord::Schema.define(version: 20170628100421) do
     t.string   "lastname"
     t.boolean  "admin",                  default: false
     t.integer  "age"
+    t.         "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
